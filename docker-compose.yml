@@ -1,0 +1,14 @@
+services:
+  ollama:
+    build: ./docker/ollama
+    volumes:
+      - ./docker/ollama:/usr/src/app
+
+  app:
+    build: .
+    ports:
+      - 8080:8080
+    volumes:
+      - ./app:/usr/src/app
+    environment:
+      OLLAMA_URL: http://ollama:11434/v1
